@@ -10,6 +10,7 @@ namespace Lesson_6
     public class UserInterface
     {
         Inventory inventory = new Inventory();
+        InitializeInventory initialize = new InitializeInventory();
         public void Ui()
         {
             for (; ; )
@@ -18,6 +19,8 @@ namespace Lesson_6
                 Console.WriteLine("1 - All products");
                 Console.WriteLine("2 - Products by type");
                 Console.WriteLine("3 - Total price");
+                Console.WriteLine("4 - Add product");
+                Console.WriteLine("5 - Delete product");
                 Console.WriteLine("0 - Exit");
                 string chose = Console.ReadLine();
                 while (CheckStringByNumber(chose))
@@ -41,9 +44,17 @@ namespace Lesson_6
                     case 3:
                         Console.WriteLine($"Total price is {inventory.TotalCost}");
                         break;
+                    case 4:
+                        inventory = initialize.AddProduct();
+                        break;
+                    case 5:
+                        inventory.DeleteProductInInventory();
+                        break;
                     case 0:
                         return;
                     default:
+                        Console.WriteLine("Wrong chose, enter correct number");
+                        Console.WriteLine();
                         break;
 
                 }

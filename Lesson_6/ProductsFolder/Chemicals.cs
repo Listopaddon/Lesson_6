@@ -8,11 +8,12 @@ namespace Lesson_6.ProductsFolder
 {
     public class Chemicals : Products
     {
-        static decimal price = 42;
-        static int id = 2;
-        static int quantity = 50;
+        string name = string.Empty;
         static ProductsType type = ProductsType.Chemicals;
 
-        public Chemicals() : base(price, id, quantity, type) { }
+        public Chemicals(int id, decimal price, string name, int quantity) : base(price, id, quantity, type)
+        {
+            this.name = name;
+        }
     }
 }

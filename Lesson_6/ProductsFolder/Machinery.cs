@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Lesson_6.ProductsFolder
 {
-    internal class Machinery :Products
+    internal class Machinery : Products
     {
-        static decimal price = 50;
-        static int id = 3;
-        static int quantity = 220;
         static ProductsType type = ProductsType.Machinery;
+        string name = string.Empty;
 
-        public Machinery() : base(price, id, quantity, type) { }
+        public Machinery(int id, string name, decimal price, int quantity) : base(price, id, quantity, type)
+        {
+            this.name = name;
+        }
     }
 }

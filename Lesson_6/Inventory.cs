@@ -9,7 +9,7 @@ namespace Lesson_6
 {
     public class Inventory
     {
-        List<Products> products = new List<Products>();
+        public List<Products> products = new List<Products>();
         decimal totalCost = 0;
 
         public decimal TotalCost
@@ -17,50 +17,67 @@ namespace Lesson_6
             get { return totalCost; }
         }
 
-        private void AddProduct()
+        public void AddProduct(Products product)
         {
-            products.Add(new Food());
-            products.Add(new Machinery());
-            products.Add(new Chemicals());
-            products.Add(new Food());
-            products.Add(new Machinery());
-            products.Add(new Chemicals());
-            products.Add(new Food());
-            products.Add(new Machinery());
-            products.Add(new Chemicals());
-
-            Cost();
+            products.Add(product);
+            totalCost += product.Price;
         }
-
-        private void Cost()
+        public void DeleteProductInInventory()
         {
-            foreach (Products product in products)
+            Console.Write("Enter number pruduct which you want delete: ");
+            string inputLine = Console.ReadLine();
+
+            int number = 0;
+            while (!CheckEnterChose(inputLine))
             {
-                totalCost += product.Price;
+                Console.WriteLine("enter correct number");
+                inputLine = Console.ReadLine();
+            }
+            number = int.Parse(inputLine);
+            totalCost -= products[number - 1].Price;
+
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].ID == number)
+                {
+                    products.Remove(products[i]);
+                }
             }
         }
 
         public void OutputProducts()
         {
-            AddProduct();
             Console.WriteLine("You chose next products: ");
             foreach (Products product in products)
             {
-                Console.WriteLine("   " + product.Type);
+                Console.WriteLine($"{product.ID}) Type is: {product.Type}, " +
+                                  $"Price is: {product.Price}, Qouantity is: {product.Quantity}");
+
             }
         }
 
         public void OutputProductsByType(ProductsType type)
         {
-            AddProduct();
             Console.WriteLine($"You chose product is {type}:");
             foreach (Products product in products)
             {
                 if (product.Type == type)
                 {
-                    Console.WriteLine("  " + product.Type);
+                    Console.WriteLine($"{product.ID}) Type is: {product.Type}, " +
+                                      $"Price is: {product.Price}, Qouantity is: {product.Quantity}");
                 }
+
             }
+        }
+
+        private bool CheckEnterChose(string inputLine)
+        {
+            if (int.TryParse(inputLine, out int result))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

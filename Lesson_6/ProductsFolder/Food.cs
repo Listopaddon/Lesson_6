@@ -8,11 +8,12 @@ namespace Lesson_6.ProductsFolder
 {
     public class Food : Products
     {
-        static decimal price = 30;
-        static int id = 1;
-        static int quantity = 10;
+        string name = string.Empty;
         static ProductsType type = ProductsType.Food;
 
-        public Food() : base(price, id, quantity, type) { }
+        public Food(int id, decimal price, int quantity, string name) : base(price, id, quantity, type)
+        {
+            this.name = name;
+        }
     }
 }
